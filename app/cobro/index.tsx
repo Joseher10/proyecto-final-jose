@@ -33,7 +33,7 @@ export default function NotFoundScreen( ) {
     try {
       console.log("Movimientos")
       const response = await fetch(
-        'http://192.168.1.70:3000/menu', {
+        'http://192.168.223.64:3000/menu', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -73,12 +73,13 @@ export default function NotFoundScreen( ) {
       <Stack.Screen options={{ title: "Overview", headerShown: false }} />
       
       <View >
-      <Text style={styles.title}>Realizar Cobro</Text>
+      <Text style={styles.title}>Cobro</Text>
+      <Text style={styles.title}>Ingrese monto</Text>
       <TextInput style={styles.buttonStyle} value={monto} keyboardType="numeric" onChangeText={onChangeText}/>
 
       
           <Button onPress={() => generateQR()}>
-       Generar QR
+       Cobrar
       </Button>
         
       </View>
@@ -92,20 +93,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "white",
     justifyContent: "space-around",
     
   },
   title: {
-    color: "white",
+    color: "#0E7AFE",
     fontSize: 30,
   },
   buttonStyle: {
     color: "#0E7AFE",
-    backgroundColor: "white",
+    backgroundColor: "black",
     fontSize: 20,
     textAlign: "center",
-    marginTop:20
+    marginTop:20,
+    opacity: 0.1 
     
   },
 });

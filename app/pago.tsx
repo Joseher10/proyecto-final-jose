@@ -16,10 +16,10 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <Stack.Screen options={{ title: "Overview", headerShown: false }} />
-      <Text style={styles.title}>Realizar Cobro</Text>
+      <Text style={styles.title}>Pagar</Text>
       <View style={{ gap: 20 }}>
       <Pressable onPress={requestPermission}>
-          <Text style={styles.buttonStyle}>otorgar permisos</Text>
+          <Text style={styles.buttonStyle}>Dar permisos</Text>
         </Pressable>
         <Link href={{ pathname: '/scanner', params: { miusuario: labelText } }} asChild>
           <Pressable disabled={!isPermissionGranted}>
@@ -29,7 +29,7 @@ export default function Home() {
                 { opacity: !isPermissionGranted ? 0.5 : 1 },
               ]}
             >
-              Escanear QR
+              Escaner
             </Text>
           </Pressable>
         </Link>
@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "white",
     justifyContent: "space-around",
     paddingVertical: 80,
   },
   title: {
-    color: "white",
+    color: "#0E7AFE",
     fontSize: 40,
   },
   buttonStyle: {

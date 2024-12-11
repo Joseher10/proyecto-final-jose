@@ -1,18 +1,8 @@
-import {StyleSheet ,Alert,TextInput,Text} from 'react-native';
+import {StyleSheet ,View,SafeAreaView,Text,Pressable} from 'react-native';
 import { Link, Stack } from "expo-router";
-
-import { Button } from '@react-navigation/elements';
 import React, {useEffect,useState} from 'react';
-import { useFocusEffect } from '@react-navigation/native';
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import movimientos from './movimientos'
-import tranferencia from './tranferencia'
-
 import {
-  createStaticNavigation,
+
   useNavigation,
   useRoute
 } from '@react-navigation/native';
@@ -33,7 +23,7 @@ export default function NotFoundScreen( ) {
     try {
       console.log("extra")
       const response = await fetch(
-        'http://192.168.1.70:3000/menu', {
+        'http://192.168.223.64:3000/menu', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -56,37 +46,30 @@ export default function NotFoundScreen( ) {
 
   }, []);
   return (
-    <>
-      <Stack.Screen options={{ title: 'Salir!' }} />
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title" >Menu Principal<HelloWave />  </ThemedText>
-        
-      </ThemedView>
-      <Text style={styles.titleContainer}>Dinero disponible:{labelSaldo}</Text>
-      
-      <ThemedView style={styles.stepContainer}>
-      <Link href={{ pathname: '/cobro', params: { userId: labelText, userName: 'John Doe' } }} asChild>
-          
-            <Text
-              style={
-                styles.buttonStyle
-                
-              }
-            >
-              Tranferencias
-            </Text>
+    <SafeAreaView style={styles.container}>
+      <Stack.Screen options={{ title: "Overview", headerShown: false }} />
+      <Text style={styles.title}>Menu</Text>
+      <Text style={styles.buttonStyle}>Saldo Actual :{labelSaldo}</Text>
+      <View style={{ gap: 20 }}>
+        <Link href={{ pathname: '/cobro', params: { userId: labelText } }} asChild>
+          <Pressable>
+          <Text style={styles.buttonStyle} >Cobro</Text>
+          </Pressable>
         </Link>
+        <Link href={{ pathname: '/pago', params: { email: labelText } }} asChild>
+          <Pressable>
+            <Text style={styles.buttonStyle} >Pago</Text>
+          </Pressable>
+        </Link>
+                <Link href={{ pathname: '/movimientos', params: { email: labelText } }} asChild>
+          <Pressable>
+            <Text style={styles.buttonStyle} >Movimientos</Text>
+          </Pressable>
+        </Link>
+      </View>
+    </SafeAreaView>
 
-
-      <Button onPress={() => navigation.navigate('pago',{email:labelText})}>
-       Retiro de efectivo
-      </Button>
-
-      <Button onPress={() => navigation.navigate('movimientos',{email:labelText})}>
-       Movimientos
-      </Button>
-      </ThemedView>
-    </>
+    
   );
 }
 
@@ -94,25 +77,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "1E1E1E",
+    backgroundColor: "white",
     justifyContent: "space-around",
     paddingVertical: 80,
   },
   buttonStyle: {
-    color: "#FF6F61",
+    color: "#0E7AFE",
     fontSize: 20,
     textAlign: "center",
   },
   titleContainer: {
     alignItems: "center",
-    color: "FFFFFF",
+    color:"#0E7AFE",
     fontSize: 20,
-    backgroundColor: "333333",
+    backgroundColor: "black",
     justifyContent: "space-around",
     paddingVertical: 0,
   },
   title: {
-    color: "FFD700",
+    color: "#0E7AFE",
     fontSize: 40,
   },
   stepContainer: {

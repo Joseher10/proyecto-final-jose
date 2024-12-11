@@ -30,7 +30,7 @@ export default function NotFoundScreen( ) {
     try {
       console.log("Movimientos")
       const response = await fetch(
-        'http://192.168.1.70:3000/menu', {
+        'http://192.168.223.64:3000/menu', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

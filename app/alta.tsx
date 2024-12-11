@@ -19,7 +19,7 @@ export default function Home() {
     const insert = async () => {
         try {
           const response = await fetch(
-            'http://192.168.1.70:3000/menu', {
+            'http://192.168.223.64:3000/menu', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
@@ -74,18 +74,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "white",
     justifyContent: "space-around",
     paddingVertical:20,
   },
   title: {
-    color: "white",
+    color: "#0E7AFE",
     fontSize: 30,
   },
   buttonStyle: {
     color: "#0E7AFE",
-    backgroundColor: "white",
+    backgroundColor: "#0E7AFE",
     fontSize: 15,
     textAlign: "center",
+    opacity:0.4
   },
 });

@@ -1,10 +1,8 @@
-import { Image, StyleSheet, Platform ,Alert,TextInput} from 'react-native';
-import { Button } from '@react-navigation/elements';
+import { SafeAreaView, StyleSheet, Text ,Pressable,View,TextInput} from 'react-native';
+import { Link, Stack } from "expo-router";
 import React, {useEffect} from 'react';
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { Button } from '@react-navigation/elements';
+
 
 import {
   createStaticNavigation,
@@ -13,8 +11,8 @@ import {
 
 
 export default function HomeScreen() {
-  const [text, onChangeText] = React.useState('email');
-  const [contraseña,onChangeText2] = React.useState('contraseña');
+  const [text,setText] = React.useState('');
+  const [contraseña,setContraseña] = React.useState('');
   const navigation = useNavigation();
   const getMoviesFromApiAsync = async () => {
     try {
@@ -23,7 +21,7 @@ export default function HomeScreen() {
      console.log('Input  :', contraseña);
      console.log("entrod")
       const response = await fetch(
-        'http://192.168.1.70:3000/menu', {
+        'http://192.168.223.64:3000/menu', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -48,79 +46,50 @@ export default function HomeScreen() {
   };
 
   return (
-    
-    <ParallaxScrollView
-
-    style={styles.titleContainer}
-      headerBackgroundColor={{ light: '#A1CEDC', dark: 'white' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/fondo.jpeg')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Santander</ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-      <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-          placeholder="correo"
-          id="email"
+    <SafeAreaView style={styles.container}>
+      <Stack.Screen options={{ title: "Overview", headerShown: false }} />
+      <Text style={styles.title}>Bienvenido </Text>
+      <View style={{ gap: 10 }}>
+        <TextInput
+        placeholder="Correo"
+        onChangeText={(text) => setText(text)}
+        value={text}
         />
         <TextInput
-          style={styles.input}
-          onChangeText={onChangeText2}
-          value={contraseña}
-          secureTextEntry={true}
-          placeholder="correo"
-          id="pass"
+        placeholder="contraseña"
+        secureTextEntry={true}
+        onChangeText={(contraseña) => setContraseña(contraseña)}
+        value={contraseña}
         />
-      <Button onPress={() => getMoviesFromApiAsync()}>
-       inicio
+       <Button onPress={() => getMoviesFromApiAsync()}>
+       ingresar
       </Button>
       <Button onPress={() => navigation.navigate('alta')}>
-       Nuevo usuario
+       Crear usuario
       </Button>
-      </ThemedView>
-    </ParallaxScrollView>
+      </View>
+    </SafeAreaView>
     
   );
 }
-
-
-
-
-
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-    color: "white",
-    
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "white",
+    justifyContent: "space-around",
+    paddingVertical: 80,
   },
-  input: {
-    height: 50,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    color: "white",
+  title: {
+    color: "#0E7AFE",
+    fontSize: 40,
+  },
+  buttonStyle: {
+    color: "red",
+    backgroundColor: "black",
     fontSize: 20,
-
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: '80%',
-    width: '100%',
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    top: '0%',
+    textAlign: "center",
+    marginTop:20,
+    
   },
 });

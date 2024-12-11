@@ -20,13 +20,13 @@ export default function TabTwoScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">LA BESTIA</ThemedText>
+        <ThemedText type="title">Equipo</ThemedText>
       </ThemedView>
-      <ThemedText>Santander uabcs</ThemedText>
+      <ThemedText>Proyecto banca movil uabcs.</ThemedText>
         
       <Collapsible title="Integrantes">
         <ThemedText>
-          Jose Maria Hernandez Cota{' '}
+         Jose Maria Hernandez Cota 
         </ThemedText>
       </Collapsible>
     </ParallaxScrollView>
