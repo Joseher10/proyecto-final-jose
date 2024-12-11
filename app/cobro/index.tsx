@@ -1,5 +1,5 @@
-import {StyleSheet, Platform ,Alert,TextInput,Text} from 'react-native';
-import {Stack } from 'expo-router';
+import {StyleSheet, Pressable,SafeAreaView,View ,Text,TextInput} from 'react-native';
+import { Link, Stack } from "expo-router";
 import React, {useEffect,useState} from 'react';
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -9,7 +9,7 @@ import movimientos from './movimientos'
 import tranferencia from './tranferencia'
 import { Button } from '@react-navigation/elements';
 
-import { View } from 'react-native';
+
 
 import {
   createStaticNavigation,
@@ -22,6 +22,9 @@ import {
 export default function NotFoundScreen( ) {
   console.log("Movimientos")
   const route = useRoute();
+  const [userId] = useState(String(route.params.userId));
+  console.log (userId)
+  
   const [monto,onChangeText] = React.useState('');
   
  
@@ -50,8 +53,14 @@ export default function NotFoundScreen( ) {
   const generateQR = async () => {
     
     try {
+      let json={
+        opcion:"2",
+        email:userId,
+        operacion:"+",
+        monto:monto
+      }
       navigation.navigate('codeqr', {
-        monto: monto
+        monto: json
       })
       
     } catch (error) {
@@ -60,46 +69,43 @@ export default function NotFoundScreen( ) {
   };
 
   return (
-    <>
-      <Stack.Screen options={{ title: 'Salir!' }} />
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Tranferencia</ThemedText> 
-      </ThemedView>
+    <SafeAreaView style={styles.container}>
+      <Stack.Screen options={{ title: "Overview", headerShown: false }} />
       
-      <ThemedView style={styles.stepContainer}>
+      <View >
+      <Text style={styles.title}>Realizar Cobro</Text>
+      <TextInput style={styles.buttonStyle} value={monto} keyboardType="numeric" onChangeText={onChangeText}/>
+
       
-        <TextInput style={styles.buttonStyle} value={monto} keyboardType="numeric" onChangeText={onChangeText}/>
-        <Button onPress={() => generateQR()}>
+          <Button onPress={() => generateQR()}>
        Generar QR
       </Button>
-      </ThemedView>
-    </>
+        
+      </View>
+    </SafeAreaView>
+
+   
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    alignItems: "center",
+    backgroundColor: "black",
+    justifyContent: "space-around",
+    
   },
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-  buttonStyle: {
+  title: {
     color: "white",
     fontSize: 30,
+  },
+  buttonStyle: {
+    color: "#0E7AFE",
+    backgroundColor: "white",
+    fontSize: 20,
     textAlign: "center",
+    marginTop:20
+    
   },
 });

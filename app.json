@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "my-app-bank-copia",
+    "name": "my-app-bank",
     "slug": "my-app-bank",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,12 +9,20 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "[REASON]",
+        "NSMicrophoneUsageDescription": "[REASON]"
+      }
     },
     "android": {
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "red"
+        "foregroundImage": "./assets/images/adaptive-icon.png"
+        
       }
     },
     "web": {
@@ -25,14 +33,13 @@
     "plugins": [
       "expo-router",
       [
-        "expo-splash-screen",
+        "expo-camera",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "red"
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "recordAudioAndroid": true
         }
       ]
+
     ],
     "experiments": {
       "typedRoutes": true

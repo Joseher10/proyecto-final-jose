@@ -1,6 +1,5 @@
 import { Image, StyleSheet, Platform ,Alert,TextInput} from 'react-native';
 import { Button } from '@react-navigation/elements';
-import {Stack } from 'expo-router';
 import React, {useEffect} from 'react';
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -24,7 +23,7 @@ export default function HomeScreen() {
      console.log('Input  :', contraseña);
      console.log("entrod")
       const response = await fetch(
-        'http://192.168.1.69:3000/menu', {
+        'http://192.168.1.70:3000/menu', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -33,7 +32,7 @@ export default function HomeScreen() {
         },
         body: JSON.stringify({
           opcion: '4',
-          email: 'maria@gmail.com',
+          email: text,
         }),
       });
       const json = await response.json();
@@ -49,11 +48,20 @@ export default function HomeScreen() {
   };
 
   return (
-    <>
     
+    <ParallaxScrollView
+
+    style={styles.titleContainer}
+      headerBackgroundColor={{ light: '#A1CEDC', dark: 'white' }}
+      headerImage={
+        <Image
+          source={require('@/assets/images/fondo.jpeg')}
+          style={styles.reactLogo}
+        />
+      }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Menu</ThemedText>
-        </ThemedView>
+        <ThemedText type="title">Santander</ThemedText>
+      </ThemedView>
       <ThemedView style={styles.stepContainer}>
       <TextInput
           style={styles.input}
@@ -66,15 +74,18 @@ export default function HomeScreen() {
           style={styles.input}
           onChangeText={onChangeText2}
           value={contraseña}
+          secureTextEntry={true}
           placeholder="correo"
           id="pass"
         />
-      <Button style={styles.input}
-      onPress={() => getMoviesFromApiAsync()}>
-       ingresar
+      <Button onPress={() => getMoviesFromApiAsync()}>
+       inicio
+      </Button>
+      <Button onPress={() => navigation.navigate('alta')}>
+       Nuevo usuario
       </Button>
       </ThemedView>
-      </>
+    </ParallaxScrollView>
     
   );
 }
@@ -87,32 +98,29 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 5,
+    color: "white",
     
   },
   input: {
-    height: 40,
+    height: 50,
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    backgroundColor : 'white'
-  },
-  button :{ 
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    backgroundColor : 'red'
+    color: "white",
+    fontSize: 20,
+
   },
   stepContainer: {
     gap: 8,
     marginBottom: 8,
   },
   reactLogo: {
-    height: 178,
-    width: 290,
+    height: '80%',
+    width: '100%',
     bottom: 0,
     left: 0,
     position: 'absolute',
+    top: '0%',
   },
 });

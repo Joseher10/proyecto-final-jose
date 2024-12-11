@@ -1,7 +1,7 @@
 import {Stack } from 'expo-router';
 import {StyleSheet,FlatList ,View,Text,ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
-
+import { useRoute } from '@react-navigation/native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 let mov: any
@@ -10,12 +10,16 @@ export default function NotFoundScreen() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  
+
+  const route = useRoute();
+  const [labelText ] = useState(String(route.params.email));
+
   const getMovimientosUser = async () => {
     try {
       console.log("Movimientos")
+
       const response = await fetch(
-        'http://192.168.1.99:3000/menu', {
+        'http://192.168.1.70:3000/menu', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -23,7 +27,7 @@ export default function NotFoundScreen() {
         },
         body: JSON.stringify({
           opcion: '3',
-          email: 'maria@gmail.com',
+          email: labelText,
         }),
       });
       const json = await response.json();
@@ -51,12 +55,16 @@ export default function NotFoundScreen() {
           <View style={styles.row}>
             <Text style={styles.cell}>{item.operacion}</Text>
             <Text style={styles.cell}>{item.saldoAnterior}</Text>
+            <Text style={styles.cell}>{item.saldoNuevo}</Text>
+            <Text style={styles.cell}>{item.fecha}</Text>
           </View>
         )}
         ListHeaderComponent={
           <View style={styles.header}>
-            <Text style={styles.headerCell}>Operacion</Text>
-            <Text style={styles.headerCell}>Saldo</Text>
+            <Text style={styles.headerCell}>operacion</Text>
+            <Text style={styles.headerCell}>S.Ant</Text>
+            <Text style={styles.headerCell}>S.Nue</Text>
+            <Text style={styles.headerCell}>Fecha</Text>
           </View>
         }
       />
@@ -78,7 +86,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#d3d3d3',
   },
   cell: {
     flex: 1,
@@ -88,7 +96,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#d3d3d3',
     paddingVertical: 10,
   },
   headerCell: {
@@ -103,7 +111,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bigBlue: {
-    color: 'blue',
+    color: '#008000',
     fontWeight: 'bold',
     fontSize: 20,
   },
