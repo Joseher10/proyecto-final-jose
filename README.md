@@ -120,3 +120,5 @@ una vez dentro te muestra el menu principal donde muestra saldo ,y las tres opci
 transferia donde hace transferencia y recibes dinero 
 retiro donde puedes retirar dinero 
 movimiento donde vez todo lo que haz hecho a lo largo de manera de lista organizada de manera de fecha 
+
+se me olvido poner que donde inicias sesion tiene una opcion donde viene nombre del equipo ,nombre de proyecto y nombre del presente 
