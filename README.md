@@ -116,4 +116,7 @@ esta pide correo ,contraseña,nombre ,apellido para darte de alta
 
 con esto ya inicias sesion de manera facil y rapida 
 
-una vez dentro te muestra el menu principal 
+una vez dentro te muestra el menu principal donde muestra saldo ,y las tres opciones que tiene mi app
+transferia donde hace transferencia y recibes dinero 
+retiro donde puedes retirar dinero 
+movimiento donde vez todo lo que haz hecho a lo largo de manera de lista organizada de manera de fecha 
