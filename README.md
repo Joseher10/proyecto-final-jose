@@ -93,3 +93,27 @@ En la siguiente se muestra el menu principal
 ![alt text](<Captura de pantalla 2024-12-06 201604.png>)
 En esta se muestra el menu de operaciones 
 ![alt text](<Captura de pantalla 2024-12-06 201545.png>)
+
+abrimos terminal 
+
+ponemos cd y la direccion donde se encuentra la carpeta con el proyecto 
+hacemos lo mismo en otra terminal para abrir la api.
+
+nos regresamos a donde esta abierta el proyecto ponemos npm i 
+
+luego ponemos npx expo start 
+ esto genera el codigo  Qr
+
+ ahora debes ir a donde abrimos la api y ponemos dir 
+ despues node .\app.js esto abre bien la api
+
+ pero antes de esto ponemos la ip de internet donde te este conectado en las 7 partes en el visual 
+
+ esto ya hara funcionar la aplicacion de manera correcta y funciona
+
+una vez iniciado en la app debes crear usuario esto para que la base de datos te registre de manera automatica 
+esta pide correo ,contraseña,nombre ,apellido para darte de alta 
+
+con esto ya inicias sesion de manera facil y rapida 
+
+una vez dentro te muestra el menu principal 
